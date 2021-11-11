@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  -
+    const IceCreams = [
+      {
+      'IceCreamName': "Choclate",
+      'Price': "$5",
+      'Quantity': "1"
+      },
+      {
+      'IceCreamName': "Butterscotch",
+      'Price': "$4",
+      'Quantity': "1"
+      },
+      {
+      'IceCreamName': "vanilla",
+      'Price': "$3",
+      'Quantity': "1"
+      },
+      ]
+  div(class="container-fluid")
+  div(class="row")
+    each IceCream ,index in IceCreams
+      div(class="col-sm-2 " onclick=`buy(${index})` )  #{IceCream.IceCreamName} - #{IceCream.Price} - #{IceCream.Quantity}
+  script.
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }
