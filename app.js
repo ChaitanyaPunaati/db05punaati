@@ -4,6 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const connectionString ='mongodb+srv://chaitu:Chaitu%40123@cluster0.pfe5g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+{
+useNewUrlParser: true,
+useUnifiedTopology: true});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var IceCreamRouter = require('./routes/IceCream');
