@@ -83,6 +83,7 @@ app.use('/users', usersRouter);
 app.use('/IceCream', IceCreamRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource',resource);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
