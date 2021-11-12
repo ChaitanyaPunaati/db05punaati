@@ -23,9 +23,9 @@ exports.IceCream_update_put = async function(req, res) {
     try {
     let toUpdate = await IceCream.findById( req.params.id)
     // Do updates of properties
-    if(req.body.Name) toUpdate.Name = req.body.Name;
-    if(req.body.Cost) toUpdate.Cost = req.body.Cost;
-    if(req.body.Weight) toUpdate.Weight = req.body.Weight;
+    if(req.body.IceCreamName) toUpdate.IceCreamName = req.body.IceCreamName;
+    if(req.body.Price) toUpdate.Price = req.body.Price;
+    if(req.body.Quantity) toUpdate.Quantity= req.body.Quantity;
     let result = await toUpdate.save();
     console.log("Sucess " + result)
     res.send(result)
@@ -54,10 +54,10 @@ exports.IceCream_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"IceCream_type":"goat", "cost":12, "size":"large"}
+    // {"IceCream_type":"goat", "Price":12, "size":"large"}
     document.Name = req.body.Name;
-    document.Cost = req.body.Cost;
-    document.Weight = req.body.Weight;
+    document.Price = req.body.Price;
+    document.Quantity= req.body.Weight;
     try{
     let result = await document.save();
     res.send(result);
