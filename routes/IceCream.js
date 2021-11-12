@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('IceCream', { title: 'Search Results IceCream' });
-});
+// GET request for one IceCream.
+router.get('/IceCreams/:id', IceCream_controller.IceCream_detail);
 
 module.exports = router;
