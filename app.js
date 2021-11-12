@@ -45,8 +45,8 @@ Quantity: 1});
  });
  let instance2 = new IceCream({
   IceCreamName: "butterscotch",
-      Price: 67,
-      Quantity: 4
+  Price: 67,
+  Quantity: 4
 });
 instance2.save(function (err, doc) {
   if (err) return console.error(err);
