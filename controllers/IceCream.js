@@ -1,54 +1,53 @@
 var IceCream = require('../models/IceCream');
 
 // for a specific IceCream.
-exports.IceCream_detail = async function(req, res) {
+exports.IceCream_detail = async function (req, res) {
     console.log("detail" + req.params.id)
     try {
-    result = await IceCream.findById( req.params.id)
-    res.send(result)
+        result = await IceCream.findById(req.params.id)
+        res.send(result)
     } catch (error) {
-    res.status(500)
-    res.send(`{"error": document for id ${req.params.id} not found`);
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
     }
-   };
+};
 
 // Handle IceCream delete form on DELETE.
-exports.IceCream_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: IceCream delete DELETE ' + req.params.id);
+exports.IceCream_delete = function (req, res) {
+    res.send('NOT IMPLEMENTED: IceCream delete DELETE ' + req.params.id);
 };
 //Handle IceCream update form on PUT.
-exports.IceCream_update_put = async function(req, res) {
+exports.IceCream_update_put = async function (req, res) {
     console.log(`update on id ${req.params.id} with body
    ${JSON.stringify(req.body)}`)
     try {
-    let toUpdate = await IceCream.findById( req.params.id)
-    // Do updates of properties
-    if(req.body.IceCreamName) toUpdate.IceCreamName = req.body.IceCreamName;
-    if(req.body.Price) toUpdate.Price = req.body.Price;
-    if(req.body.Quantity) toUpdate.Quantity= req.body.Quantity;
-    let result = await toUpdate.save();
-    console.log("Sucess " + result)
-    res.send(result)
+        let toUpdate = await IceCream.findById(req.params.id)
+        // Do updates of properties
+        if (req.body.IceCreamName) toUpdate.IceCreamName = req.body.IceCreamName;
+        if (req.body.Price) toUpdate.Price = req.body.Price;
+        if (req.body.Quantity) toUpdate.Quantity = req.body.Quantity;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
     } catch (err) {
-    res.status(500)
-    res.send(`{"error": ${err}: Update for id ${req.params.id}
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
    failed`);
     }
-   };
+};
 
 // List of all IceCreams
-exports.IceCream_list = async function(req, res) {
-    try{
-    theIceCreams = await IceCream.find();
-    res.send(theIceCreams);
+exports.IceCream_list = async function (req, res) {
+    try {
+        theIceCreams = await IceCream.find();
+        res.send(theIceCreams);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
     }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
-    }
-   };
-   // Handle IceCream create on POST.
-exports.IceCream_create_post = async function(req, res) {
+};
+// Handle IceCream create on POST.
+exports.IceCream_create_post = async function (req, res) {
     console.log(req.body)
     let document = new IceCream();
     // We are looking for a body, since POST does not have query parameters.
@@ -57,27 +56,28 @@ exports.IceCream_create_post = async function(req, res) {
     // {"IceCream_type":"goat", "Price":12, "size":"large"}
     document.Name = req.body.Name;
     document.Price = req.body.Price;
-    document.Quantity= req.body.Weight;
-    try{
-    let result = await document.save();
-    res.send(result);
+    document.Quantity = req.body.Weight;
+    try {
+        let result = await document.save();
+        res.send(result);
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
     }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
-    }
-   };
-   
+};
 
-   // VIEWS
+
+// VIEWS
 // Handle a show all view
-exports.IceCream_view_all_Page = async function(req, res) {
-    try{
-    theIceCreams = await IceCream.find();
-    res.render('IceCream', { title: 'IceCream Search Results', results: theIceCreams });
+exports.IceCream_view_all_Page = async function (req, res) {
+    try {
+        theIceCreams = await IceCream.find();
+        res.render('IceCream', {
+            title: 'IceCream Search Results',
+            results: theIceCreams
+        });
+    } catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
     }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
-    }
-   };
+};
