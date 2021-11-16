@@ -33,7 +33,7 @@ db.once("open", function () {
 
 async function recreateDB() {
   // Delete everything
-  //await IceCream.deleteMany();
+await IceCream.deleteMany();
   let instance1 = new
   IceCream({
     IceCreamName: "Choclate",
