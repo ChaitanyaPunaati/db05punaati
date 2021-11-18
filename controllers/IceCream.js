@@ -74,19 +74,7 @@ exports.IceCream_create_post = async function (req, res) {
     }
 };
 
-// Handle a delete one view with id from query
-exports.IceCream_delete_Page = async function(req, res) {
-    console.log("Delete view for id " + req.query.id)
-    try{
-    result = await IceCream.findById(req.query.id)
-    res.render('IceCreamdelete', { title: 'IceCream Delete', toShow:
-    result });
-    }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
-    }
-    };
+
 
 // Handle building the view for updating a IceCream.
 // query provides the id
