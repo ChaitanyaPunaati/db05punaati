@@ -74,6 +74,20 @@ exports.IceCream_create_post = async function (req, res) {
     }
 };
 
+// Handle building the view for creating a IceCream.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.IceCream_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('IceCreamcreate', { title: 'IceCream Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
 // Handle a show one view with id specified by query
 exports.IceCream_view_one_Page = async function(req, res) {
     console.log("single view for id " + req.query.id)
