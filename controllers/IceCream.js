@@ -74,6 +74,19 @@ exports.IceCream_create_post = async function (req, res) {
     }
 };
 
+// Handle a show one view with id specified by query
+exports.IceCream_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await IceCream.findById( req.query.id)
+    res.render('IceCreamdetail',
+    { title: 'IceCream Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
 
 // VIEWS
 // Handle a show all view

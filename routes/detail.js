@@ -2,8 +2,8 @@ var express = require('express');
 const IceCream_controlers= require('../controllers/IceCream');
 var router = express.Router();
 
-// GET request for one IceCream.
-router.get('/IceCreams/:id', IceCream_controlers.IceCream_detail);
+/* GET detail IceCream page */
+router.get('/detail', IceCream_controlers.IceCream_view_one_Page);
 
 
 module.exports = router;

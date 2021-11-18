@@ -17,7 +17,8 @@ var IceCreamRouter = require('./routes/IceCream');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var IceCream = require("./models/IceCream");
-var resource = require("./routes/resource");
+var resourceRouter = require("./routes/resource");
+var detailRouter = require("./routes/detail");
 
 // We can seed the collection if needed on
 //Get the default connection
@@ -88,7 +89,8 @@ app.use('/users', usersRouter);
 app.use('/IceCream', IceCreamRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
-app.use('/resource', resource);
+app.use('/resource', resourceRouter);
+app.use('/detail', detailRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
