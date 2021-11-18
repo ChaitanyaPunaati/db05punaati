@@ -1,0 +1,39 @@
+extends layout
+block content
+ h1= title
+ - let IceCreamid = toShow._id
+ - let IceCreamName = toShow.IceCreamName
+ - let IceCreamPrice = toShow.Price
+ - let IceCreamQuantity = toShow.Quantity
+ div.row(class='mb-2')
+   div.mr-1 ID is
+   div #{IceCreamid}
+ - let actionid = "/resource/resource/IceCreams/" + IceCreamid
+ form(id='IceCreamForm', action= actionid, method="PUT")
+  div.form-group
+   label.IceCreamAttr(for='Name') IceCream Name 
+   input#IceCreamName(type='text', name='Name', value= IceCreamName )
+  div.form-group
+    label.IceCreamAttr(for='Price') IceCream Price
+    input#Price(type='number', name='Price', value= IceCreamPrice )
+  div.form-group
+    label.IceCreamAttr(for='Quantity') IceCream Quantity
+    input#Quantity(type='number', name='Quantity', value= IceCreamQuantity )
+    input(type="submit")
+ script.
+  document.forms['IceCreamForm'].addEventListener('submit', (event) => {
+   event.preventDefault();
+   // TODO do something here to show user that form is being submitted
+   fetch(event.target.action, {
+   method: 'PUT',
+   body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+   }).then((resp) => {
+   return resp.json(); // or resp.text() or whatever the server sends
+   }).then((body) => {
+   alert("Update succeded")
+   // TODO handle body
+   }).catch((error) => {
+   // TODO handle error
+   alert("Update failed " + error )
+   });
+  });
