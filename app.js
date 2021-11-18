@@ -21,6 +21,7 @@ var resourceRouter = require("./routes/resource");
 var detailRouter = require("./routes/detail");
 var createRouter = require("./routes/create");
 var updateRouter = require("./routes/update");
+var deleteRouter = require("./routes/delete");
 
 // We can seed the collection if needed on
 //Get the default connection
@@ -95,6 +96,7 @@ app.use('/resource', resourceRouter);
 app.use('/detail', detailRouter);
 app.use('/create', createRouter);
 app.use('/update', updateRouter);
+app.use('/delete', deleteRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
