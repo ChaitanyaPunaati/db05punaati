@@ -2,30 +2,15 @@ extends layout
 
 block content
   h1= title
-  -
-    const IceCreams = [
-      {
-      'IceCreamName': "Choclate",
-      'Price': "5",
-      'Quantity': "1"
-      },
-      {
-      'IceCreamName': "butterscotch",
-      'Price': "67",
-      'Quantity': "4"
-      },
-      {
-      'IceCreamName': "vanila",
-      'Price': "6",
-      'Quantity': "3"
-      },
-      ]
+  - let IceCreams=results
   div(class="container-fluid")
-  div(class="row")
-    each IceCream ,index in IceCreams
-      div(class="col-sm-2 " onclick=`buy(${index})` )  #{IceCream.IceCreamName} - #{IceCream.Price} - #{IceCream.Quantity}
+    div(class="row m-1")
+      each IceCream in IceCreams
+        - let destination = `dispatch(\"/update/update?id=${IceCream._id}\")`
+        div(class="col-sm-2 "  class="m-1")  #{IceCream.IceCreamName} - #{IceCream.Price} - #{IceCream.Quantity}
+          button.btn( class="btn-primary"  class="m-1" class="btn-toolbar", onclick= destination) Update
   script.
-      function buy(itemNo)
+      function dispatch(path)
       {
-        alert(`You purchased Item ${itemNo+1}`)
-      }
+      window.location.href=path
+      }   
