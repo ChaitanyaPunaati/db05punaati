@@ -9,6 +9,8 @@ block content
     div(class="row m-1")
       each IceCream in IceCreams
         - let destination = `dispatch(\"/update/update?id=${IceCream._id}\")`
+        - let destination = `detail(\"/update/update?id=${IceCream._id}\")`
+        - let destination = `delete(\"/update/update?id=${IceCream._id}\")`
         div(class="col-sm-2 "  class="m-1")  #{IceCream.IceCreamName} - #{IceCream.Price} - #{IceCream.Quantity}
           button.btn( class="btn-primary"  class="m-1" class="btn-toolbar", onclick= destination) Update
           button.btn( class="btn-primary"  class="m-1" class="btn-toolbar", onclick= detail) detail
